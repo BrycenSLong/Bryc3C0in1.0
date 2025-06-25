@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2021 The Bitcoin Core developers
-// Copyright (c) 2011-2025 The Peercoin developers
+// Copyright (c) 2011-2025 The Bryc3C0in developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -155,13 +155,13 @@ public:
         // This is fine at runtime as we'll fall back to using them as an addrfetch if they don't support the
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
-        vSeeds.emplace_back("seed.peercoin.net");
-        vSeeds.emplace_back("seed2.peercoin.net");
-        vSeeds.emplace_back("seed.peercoin-library.org");
+        vSeeds.emplace_back("seed.bryc3c0in.net");
+        vSeeds.emplace_back("seed2.bryc3c0in.net");
+        vSeeds.emplace_back("seed.bryc3c0in-library.org");
         vSeeds.emplace_back("seed.ppcoin.info");
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55);  // peercoin: addresses begin with 'P'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,117); // peercoin: addresses begin with 'p'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55);  // bryc3c0in: addresses begin with 'P'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,117); // bryc3c0in: addresses begin with 'p'
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,183);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
@@ -261,9 +261,9 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("tseed.peercoin.net");
-        vSeeds.emplace_back("tseed2.peercoin.net");
-        vSeeds.emplace_back("tseed.peercoin-library.org");
+        vSeeds.emplace_back("tseed.bryc3c0in.net");
+        vSeeds.emplace_back("tseed2.bryc3c0in.net");
+        vSeeds.emplace_back("tseed.bryc3c0in-library.org");
         vSeeds.emplace_back("testseed.ppcoin.info");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);

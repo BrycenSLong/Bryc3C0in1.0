@@ -1,4 +1,4 @@
-// Copyright (c) 2012-2025 The Peercoin developers
+// Copyright (c) 2012-2025 The Bryc3C0in developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -94,7 +94,7 @@ static std::map<int, unsigned int> mapStakeModifierTestnetCheckpoints =
     (516308, 0x04a0897au )
     (573702, 0xe69df1acu )
     (612778, 0x6be16d62u )
-    ;
+   ;
 
 // Whether the given coinstake is subject to new v0.3 protocol
 bool IsProtocolV03(unsigned int nTimeCoinStake)
@@ -194,7 +194,7 @@ bool IsProtocolV15(const CBlockIndex* pindexPrev)
   if (pindexPrev->nTime < (Params().NetworkIDString() != CBaseChainParams::MAIN ? nProtocolV15TestSwitchTime : nProtocolV15SwitchTime))
       return false;
 
-  if ((Params().NetworkIDString() == CBaseChainParams::MAIN && pindexPrev->nHeight > 801330) ||
+  if ((Params().NetworkIDString() == CBaseChainParams::MAIN && pindexPrev->nHeight > 801334) ||
       (Params().NetworkIDString() != CBaseChainParams::MAIN && pindexPrev->nHeight > 612775))
     return true;
 
@@ -449,7 +449,7 @@ static bool GetKernelStakeModifierV05(CBlockIndex* pindexPrev, unsigned int nTim
         else
             return false;
     }
-    // loop to find the stake modifier earlier by 
+    // loop to find the stake modifier earlier by
     // (nStakeMinAge minus a selection interval)
     while (nStakeModifierTime + params.nStakeMinAge - nStakeModifierSelectionInterval >(int64_t) nTimeTx)
     {
@@ -538,14 +538,14 @@ static bool GetKernelStakeModifier(CBlockIndex* pindexPrev, uint256 hashBlockFro
         return GetKernelStakeModifierV03(pindexPrev, hashBlockFrom, nStakeModifier, nStakeModifierHeight, nStakeModifierTime, fPrintProofOfStake, chainstate);
 }
 
-// peercoin kernel protocol
+// bryc3c0in kernel protocol
 // coinstake must meet hash target according to the protocol:
 // kernel (input 0) must meet the formula
 //     hash(nStakeModifier + txPrev.block.nTime + txPrev.offset + txPrev.nTime + txPrev.vout.n + nTime) < bnTarget * nCoinDayWeight
 // this ensures that the chance of getting a coinstake is proportional to the
 // amount of coin age one owns.
 // The reason this hash is chosen is the following:
-//   nStakeModifier: 
+//   nStakeModifier:
 //       (v0.5) uses dynamic stake modifier around 21 days before the kernel,
 //              versus static stake modifier about 9 days after the staked
 //              coin (txPrev) used in v0.3
@@ -554,7 +554,7 @@ static bool GetKernelStakeModifier(CBlockIndex* pindexPrev, uint256 hashBlockFro
 //       (v0.2) nBits (deprecated): encodes all past block timestamps
 //   txPrev.block.nTime: prevent nodes from guessing a good timestamp to
 //                       generate transaction for future advantage
-//   txPrev.offset: offset of txPrev inside block, to reduce the chance of 
+//   txPrev.offset: offset of txPrev inside block, to reduce the chance of
 //                  nodes generating coinstake at the same time
 //   txPrev.nTime: reduce the chance of nodes generating coinstake at the same
 //                 time
@@ -628,7 +628,7 @@ bool CheckStakeKernelHash(unsigned int nBits, CBlockIndex* pindexPrev, const CBl
             LOCK(cs_main);
             const CBlockIndex* pindexTmp = chainstate.m_blockman.LookupBlockIndex(blockFrom.GetHash());
             LogPrintf("CheckStakeKernelHash() : using modifier 0x%016x at height=%d timestamp=%s for block from height=%d timestamp=%s\n",
-                nStakeModifier, nStakeModifierHeight, 
+                nStakeModifier, nStakeModifierHeight,
                 FormatISO8601DateTime(nStakeModifierTime),
                 pindexTmp->nHeight,
                 FormatISO8601DateTime(blockFrom.GetBlockTime()));
@@ -755,7 +755,7 @@ unsigned int HowSuperMajority(int minVersion, const CBlockIndex* pstart, unsigne
     return nFound;
 }
 
-// peercoin: entropy bit for stake modifier if chosen by modifier
+// bryc3c0in: entropy bit for stake modifier if chosen by modifier
 unsigned int GetStakeEntropyBit(const CBlock& block)
 {
     unsigned int nEntropyBit = 0;

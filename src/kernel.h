@@ -1,8 +1,8 @@
-// Copyright (c) 2012-2025 The Peercoin developers
+// Copyright (c) 2012-2025 The Bryc3C0in developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef PEERCOIN_KERNEL_H
-#define PEERCOIN_KERNEL_H
+#ifndef BRYC3C0IN_KERNEL_H
+#define BRYC3C0IN_KERNEL_H
 
 #include <primitives/transaction.h> // CTransaction(Ref)
 
@@ -65,11 +65,11 @@ unsigned int GetStakeModifierChecksum(const CBlockIndex* pindex);
 // Check stake modifier hard checkpoints
 bool CheckStakeModifierCheckpoints(int nHeight, unsigned int nStakeModifierChecksum);
 
-// peercoin: block version supermajority calculation
+// bryc3c0in: block version supermajority calculation
 bool IsSuperMajority(int minVersion, const CBlockIndex* pstart, unsigned int nRequired, unsigned int nToCheck);
 unsigned int HowSuperMajority(int minVersion, const CBlockIndex* pstart, unsigned int nRequired, unsigned int nToCheck);
 
-// peercoin: entropy bit for stake modifier if chosen by modifier
+// bryc3c0in: entropy bit for stake modifier if chosen by modifier
 unsigned int GetStakeEntropyBit(const CBlock& block);
 
-#endif // PEERCOIN_KERNEL_H
+#endif // BRYC3C0IN_KERNEL_H

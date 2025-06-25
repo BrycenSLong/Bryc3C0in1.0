@@ -1,8 +1,8 @@
-// Copyright (c) 2012-2025 The Peercoin developers
+// Copyright (c) 2012-2025 The Bryc3C0in developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef PEERCOIN_KERNELRECORD_H
-#define PEERCOIN_KERNELRECORD_H
+#ifndef BRYC3C0IN_KERNELRECORD_H
+#define BRYC3C0IN_KERNELRECORD_H
 
 #include <uint256.h>
 #include <interfaces/wallet.h>
@@ -57,4 +57,4 @@ protected:
     double prevProbability;
 };
 
-#endif // PEERCOIN_KERNELRECORD_H
+#endif // BRYC3C0IN_KERNELRECORD_H

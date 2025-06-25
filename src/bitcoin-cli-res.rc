@@ -1,7 +1,7 @@
 #include <windows.h>             // needed for VERSIONINFO
 #include "clientversion.h"       // holds the needed client version information
 
-#define VER_PRODUCTVERSION     PEERCOIN_VERSION_MAJOR,PEERCOIN_VERSION_MINOR,PEERCOIN_VERSION_REVISION,PEERCOIN_VERSION_BUILD
+#define VER_PRODUCTVERSION     BRYC3C0IN_VERSION_MAJOR,BRYC3C0IN_VERSION_MINOR,BRYC3C0IN_VERSION_REVISION,BRYC3C0IN_VERSION_BUILD
 #define VER_FILEVERSION        VER_PRODUCTVERSION
 
 VS_VERSION_INFO VERSIONINFO
@@ -14,14 +14,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Peercoin"
-            VALUE "FileDescription",    "peercoin-cli (JSON-RPC client for " PACKAGE_NAME ")"
+            VALUE "CompanyName",        "Bryc3C0in"
+            VALUE "FileDescription",    "bryc3c0in-cli (JSON-RPC client for " PACKAGE_NAME ")"
             VALUE "FileVersion",        PACKAGE_VERSION
-            VALUE "InternalName",       "peercoin-cli"
+            VALUE "InternalName",       "bryc3c0in-cli"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "peercoin-cli.exe"
-            VALUE "ProductName",        "peercoin-cli"
+            VALUE "OriginalFilename",   "bryc3c0in-cli.exe"
+            VALUE "ProductName",        "bryc3c0in-cli"
             VALUE "ProductVersion",     PACKAGE_VERSION
         END
     END

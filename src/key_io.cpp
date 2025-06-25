@@ -85,7 +85,7 @@ CTxDestination DecodeDestination(const std::string& str, const CChainParams& par
     // Note this will be false if it is a valid Bech32 address for a different network
     bool is_bech32 = false;
     bech32::DecodeResult dec;
-    // peercoin segwit prefix is pc, starts with same letter as legacy address, so we need to try to decode if it looks like segwit
+    // bryc3c0in segwit prefix is pc, starts with same letter as legacy address, so we need to try to decode if it looks like segwit
     if (ToLower(str.substr(0, params.Bech32HRP().size())) == params.Bech32HRP() && str.length()>13 && str[params.Bech32HRP().size()]=='1') {
         dec = bech32::Decode(str);
         is_bech32 = (dec.encoding != bech32::Encoding::INVALID);
