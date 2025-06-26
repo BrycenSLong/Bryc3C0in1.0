@@ -212,8 +212,8 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>Peercoin</source>
-        <translation>Peercoin</translation>
+        <source>Brycecoin</source>
+        <translation>Brycecoin</translation>
     </message>
     </context>
 <context>
@@ -224,8 +224,8 @@
         <translation type="unfinished">Kero</translation>
     </message>
     <message>
-        <source>Enter a Peercoin address (e.g. %1)</source>
-        <translation>Nyora kero ye Peercoin (sekuti %1)</translation>
+        <source>Enter a Brycecoin address (e.g. %1)</source>
+        <translation>Nyora kero ye Brycecoin (sekuti %1)</translation>
     </message>
     <message>
         <source>%1 d</source>

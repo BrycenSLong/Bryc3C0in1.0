@@ -1,6 +1,6 @@
 # NetBSD Build Guide
 
-This guide describes how to build peercoind and command-line utilities on NetBSD.
+This guide describes how to build Brycecoind and command-line utilities on NetBSD.
 
 This guide describes how to build bitcoind, command-line utilities, and GUI on NetBSD.
 
@@ -16,7 +16,7 @@ pkgin install autoconf automake libtool pkg-config git gmake boost libevent
 
 ```
 
-git clone https://github.com/peercoin/peercoin.git
+git clone https://github.com/Brycecoin/Brycecoin.git
 ```
 
 See [dependencies.md](dependencies.md) for a complete overview.
@@ -109,7 +109,7 @@ from the root of the repository. Then set `BDB_PREFIX` for the next section:
 export BDB_PREFIX="$PWD/db4"
 ```
 
-### Building Peercoin
+### Building Brycecoin
 
 **Important**: Use `gmake` (the non-GNU `make` will exit with an error).
 

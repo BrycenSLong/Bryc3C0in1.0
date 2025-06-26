@@ -215,14 +215,14 @@ public:
     //! (memory only) Maximum nTime in the chain up to and including this block.
     unsigned int nTimeMax{0};
 
-// peercoin
-    // peercoin: money supply related block index fields
+// Brycecoin
+    // Brycecoin: money supply related block index fields
     int64_t nMint{0};
     int64_t nMoneySupply{0};
 
-    // peercoin: proof-of-stake related block index fields
-    unsigned int nFlags{0};  // peercoin: block index flags
-    // peercoin: height of pos blocks only
+    // Brycecoin: proof-of-stake related block index fields
+    unsigned int nFlags{0};  // Brycecoin: block index flags
+    // Brycecoin: height of pos blocks only
     unsigned int nHeightStake{0};
     enum
     {
@@ -275,7 +275,7 @@ public:
         if (fGeneratedStakeModifier)
             nFlags |= BLOCK_STAKE_MODIFIER;
     }
-// peercoin end
+// Brycecoin end
 
     explicit CBlockIndex(const CBlockHeader& block)
         : nVersion{block.nVersion},

@@ -1,6 +1,6 @@
 # OpenBSD Build Guide
 
-This guide describes how to build peercoind, peercoin-qt, and command-line utilities on OpenBSD.
+This guide describes how to build Brycecoind, Brycecoin-qt, and command-line utilities on OpenBSD.
 
 This guide describes how to build bitcoind, command-line utilities, and GUI on OpenBSD.
 
@@ -17,7 +17,7 @@ pkg_add automake # (select highest version, e.g. 1.16)
 pkg_add python # (select highest version, e.g. 3.8)
 pkg_add bash
 
-git clone https://github.com/peercoin/peercoin.git
+git clone https://github.com/Brycecoin/Brycecoin.git
 ```
 
 See [dependencies.md](dependencies.md) for a complete overview.
@@ -60,7 +60,7 @@ Then set `BDB_PREFIX`:
 export BDB_PREFIX="/path/to/bitcoin/depends/x86_64-unknown-openbsd"
 ```
 
-### Building Peercoin
+### Building Brycecoin
 
 **Important**: Use `gmake` (the non-GNU `make` will exit with an error).
 

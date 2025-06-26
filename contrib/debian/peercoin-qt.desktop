@@ -1,11 +1,11 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=Peercoin
-Comment=Desktop allet for Peercoin Cryptocurrency
-Comment[de]=Offizieller Client für die Kryptowährung Peercoin
-Exec=peercoin-qt %u
+Name=Brycecoin
+Comment=Desktop allet for Brycecoin Cryptocurrency
+Comment[de]=Offizieller Client für die Kryptowährung Brycecoin
+Exec=Brycecoin-qt %u
 Terminal=false
 Type=Application
-Icon=/usr/share/pixmaps/peercoin128.png
-MimeType=x-scheme-handler/peercoin;
+Icon=/usr/share/pixmaps/Brycecoin128.png
+MimeType=x-scheme-handler/Brycecoin;
 Categories=Office;Finance;P2P;Network;Qt;

@@ -282,8 +282,8 @@ jobs:
           if [[ $GITHUB_REF == refs/tags/v* ]]; then
             PUSH=true
             TAG_NAME=${GITHUB_REF/refs\/tags\//}
-            TAG_NAME=${TAG_NAME/ppc\./}
-            TAG_NAME=${TAG_NAME/ppc/}
+            TAG_NAME=${TAG_NAME/BRY\./}
+            TAG_NAME=${TAG_NAME/BRY/}
             TAG_NAME=${TAG_NAME/v/}
           fi
           echo "push=${PUSH}" >> $GITHUB_OUTPUT
@@ -316,7 +316,7 @@ jobs:
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: ${{ steps.detect.outputs.push == 'true' }}
           tags: |
-            bryc3c0in/peercoind:${{ steps.detect.outputs.tag-name }}
+            bryc3c0in/Brycecoind:${{ steps.detect.outputs.tag-name }}
             ghcr.io/${{ github.repository }}/bryc3c0ind:${{ steps.detect.outputs.tag-name }}
 
   release:
@@ -336,8 +336,8 @@ jobs:
           fi
           if [[ $GITHUB_REF == refs/tags/v* ]]; then
             TAG_NAME=${GITHUB_REF/refs\/tags\//}
-            TAG_NAME_NO_DOT=${TAG_NAME/ppc\./}
-            RELEASE_TITLE="Release ${TAG_NAME_NO_DOT/ppc/}"
+            TAG_NAME_NO_DOT=${TAG_NAME/BRY\./}
+            RELEASE_TITLE="Release ${TAG_NAME_NO_DOT/BRY/}"
           fi
           if [[ -z "${{ secrets.GPG_PRIVATE_KEY }}" ]]; then
             TAG_NAME=noop

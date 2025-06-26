@@ -132,7 +132,7 @@ bool BaseIndex::Init()
             }
         }
         if (prune_violation) {
-            return InitError(strprintf(Untranslated("%s best block of the index goes beyond pruned data. Please disable the index or reindex (which will download the whole blockchain again)"), GetName())); // peercoin: should never happen
+            return InitError(strprintf(Untranslated("%s best block of the index goes beyond pruned data. Please disable the index or reindex (which will download the whole blockchain again)"), GetName())); // Brycecoin: should never happen
         }
     }
     return true;

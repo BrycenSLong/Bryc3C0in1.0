@@ -30,7 +30,7 @@ inline CTransactionRef create_placeholder_tx(size_t num_inputs, size_t num_outpu
         mtx.vin[i].scriptSig = random_script;
     }
     for (size_t o{0}; o < num_outputs; ++o) {
-        mtx.vout[o].nValue = 1 * CENT;
+        mtx.vout[o].nValue = 1 * scott;
         mtx.vout[o].scriptPubKey = random_script;
     }
     return MakeTransactionRef(mtx);

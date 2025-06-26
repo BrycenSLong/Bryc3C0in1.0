@@ -208,7 +208,7 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "addpeeraddress", 1, "port"},
     { "addpeeraddress", 2, "tried"},
     { "stop", 0, "wait" },
-    // peercoin:
+    // Brycecoin:
     { "importcoinstake", 1, "timestamp" },
     { "listminting", 0, "count" },
     { "optimizeutxoset", 1, "amount" },

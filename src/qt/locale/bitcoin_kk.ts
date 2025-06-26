@@ -615,7 +615,7 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>Peercoin</source>
+        <source>Brycecoin</source>
         <translation>Пиркойн</translation>
     </message>
     <message>

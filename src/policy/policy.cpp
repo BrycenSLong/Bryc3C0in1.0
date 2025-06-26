@@ -247,7 +247,7 @@ bool IsWitnessStandard(const CTransaction& tx, const CCoinsViewCache& mapInputs)
             }
         }
 
-        // peercoin check for exceeding max witness size
+        // Brycecoin check for exceeding max witness size
         unsigned int witnesssize = 0;
         for (const auto& item : tx.vin[i].scriptWitness.stack) {
             witnesssize += item.size();

@@ -447,7 +447,7 @@ std::shared_ptr<CWallet> CreateWallet(WalletContext& context, const std::string&
     return wallet;
 }
 
-// peercoin: optional setting to unlock wallet for block minting only;
+// Brycecoin: optional setting to unlock wallet for block minting only;
 //         serves to disable the trivial sendmoney when OS account compromised
 bool fWalletUnlockMintOnly = false;
 
@@ -958,7 +958,7 @@ void CWallet::WalletUpdateSpent(const CTransactionRef &tx)
                     LogPrintf("WalletUpdateSpent: bad wtx %s\n", wtx.GetHash().ToString().c_str());
                 else if (IsMine(wtx.tx->vout[txin.prevout.n]))
                 {
-                    LogPrintf("WalletUpdateSpent found spent coin %sppc %s\n", FormatMoney(CachedTxGetCredit(*this, wtx, ISMINE_SPENDABLE)).c_str(), wtx.GetHash().ToString().c_str());
+                    LogPrintf("WalletUpdateSpent found spent coin %sBRY %s\n", FormatMoney(CachedTxGetCredit(*this, wtx, ISMINE_SPENDABLE)).c_str(), wtx.GetHash().ToString().c_str());
                     NotifyTransactionChanged(txin.prevout.hash, CT_UPDATED);
                 }
             }
@@ -3533,7 +3533,7 @@ void CWallet::ConnectScriptPubKeyManNotifiers()
     }
 }
 
-// peercoin: function to determine optimal fraction of supply for rfc28
+// Brycecoin: function to determine optimal fraction of supply for rfc28
 double SecurityToOptimalFraction(double security, bool isTestnet) {
     const double coeffsMain[] = {
         -0.01205449390140,      // const
@@ -3565,7 +3565,7 @@ double SecurityToOptimalFraction(double security, bool isTestnet) {
     return optimalFraction;
 }
 
-// peercoin: create coin stake transaction
+// Brycecoin: create coin stake transaction
 typedef std::vector<unsigned char> valtype;
 bool CWallet::CreateCoinStake(ChainstateManager& chainman, const CWallet* pwallet, unsigned int nBits, int64_t nSearchInterval, CMutableTransaction& txNew, CTxDestination destination)
 {
@@ -3888,7 +3888,7 @@ bool CWallet::CreateCoinStake(ChainstateManager& chainman, const CWallet* pwalle
             );
 
             if (bDebug)
-                LogPrintf("rfc28: security level is %f, target amount %f, desired outputs %d from %f ppc\n",
+                LogPrintf("rfc28: security level is %f, target amount %f, desired outputs %d from %f BRY\n",
                     securityLevel, double(nTargetOutputAmount)/COIN, desiredOutputs, double(current)/COIN);
 
             CAmount outValue = current / desiredOutputs;

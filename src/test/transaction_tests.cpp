@@ -387,7 +387,7 @@ BOOST_AUTO_TEST_CASE(test_Get)
     CCoinsView coinsDummy;
     CCoinsViewCache coins(&coinsDummy);
     std::vector<CMutableTransaction> dummyTransactions =
-        SetupDummyInputs(keystore, coins, {11*CENT, 50*CENT, 21*CENT, 22*CENT});
+        SetupDummyInputs(keystore, coins, {11*scott, 50*scott, 21*scott, 22*scott});
 
     CMutableTransaction t1;
     t1.vin.resize(3);
@@ -401,7 +401,7 @@ BOOST_AUTO_TEST_CASE(test_Get)
     t1.vin[2].prevout.n = 1;
     t1.vin[2].scriptSig << std::vector<unsigned char>(65, 0) << std::vector<unsigned char>(33, 4);
     t1.vout.resize(2);
-    t1.vout[0].nValue = 90*CENT;
+    t1.vout[0].nValue = 90*scott;
     t1.vout[0].scriptPubKey << OP_1;
 
     BOOST_CHECK(AreInputsStandard(CTransaction(t1), coins));
@@ -750,7 +750,7 @@ BOOST_AUTO_TEST_CASE(test_IsStandard)
     CCoinsView coinsDummy;
     CCoinsViewCache coins(&coinsDummy);
     std::vector<CMutableTransaction> dummyTransactions =
-        SetupDummyInputs(keystore, coins, {11*CENT, 50*CENT, 21*CENT, 22*CENT});
+        SetupDummyInputs(keystore, coins, {11*CENT, 50*scott, 21*scott, 22*scott});
 
     CMutableTransaction t;
     t.vin.resize(1);
@@ -758,7 +758,7 @@ BOOST_AUTO_TEST_CASE(test_IsStandard)
     t.vin[0].prevout.n = 1;
     t.vin[0].scriptSig << std::vector<unsigned char>(65, 0);
     t.vout.resize(1);
-    t.vout[0].nValue = 90*CENT;
+    t.vout[0].nValue = 90*scott;
     CKey key;
     key.MakeNewKey(true);
     t.vout[0].scriptPubKey = GetScriptForDestination(PKHash(key.GetPubKey()));

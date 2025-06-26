@@ -99,14 +99,14 @@ static int AppInitRawTx(int argc, char* argv[])
 
     if (argc < 2 || HelpRequested(gArgs) || gArgs.IsArgSet("-version")) {
         // First part of help message is specific to this utility
-        std::string strUsage = PACKAGE_NAME " peercoin-tx utility version " + FormatFullVersion() + "\n";
+        std::string strUsage = PACKAGE_NAME " Brycecoin-tx utility version " + FormatFullVersion() + "\n";
 
         if (gArgs.IsArgSet("-version")) {
             strUsage += FormatParagraph(LicenseInfo());
         } else {
             strUsage += "\n"
-                "Usage:  peercoin-tx [options] <hex-tx> [commands]  Update hex-encoded peercoin transaction\n"
-                "or:     peercoin-tx [options] -create [commands]   Create hex-encoded peercoin transaction\n"
+                "Usage:  Brycecoin-tx [options] <hex-tx> [commands]  Update hex-encoded Brycecoin transaction\n"
+                "or:     Brycecoin-tx [options] -create [commands]   Create hex-encoded Brycecoin transaction\n"
                 "\n";
             strUsage += gArgs.GetHelpMessage();
         }

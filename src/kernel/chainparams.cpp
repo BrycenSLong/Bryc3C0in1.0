@@ -142,7 +142,7 @@ public:
         pchMessageStart[1] = 0x22;
         pchMessageStart[2] = 0xe0;
         pchMessageStart[3] = 0x1b;
-        nDefaultPort = 9901;
+        nDefaultPort = 9901; 
         m_assumed_blockchain_size = 2;
 
         genesis = CreateGenesisBlock(1345083810, 1345084287, 2179302059u, 0x1d00ffff, 1, 0);
@@ -158,7 +158,7 @@ public:
         vSeeds.emplace_back("seed.bryc3c0in.net");
         vSeeds.emplace_back("seed2.bryc3c0in.net");
         vSeeds.emplace_back("seed.bryc3c0in-library.org");
-        vSeeds.emplace_back("seed.ppcoin.info");
+        vSeeds.emplace_back("seed.bryc3c0in.info");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55);  // bryc3c0in: addresses begin with 'P'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,117); // bryc3c0in: addresses begin with 'p'
@@ -264,7 +264,7 @@ public:
         vSeeds.emplace_back("tseed.bryc3c0in.net");
         vSeeds.emplace_back("tseed2.bryc3c0in.net");
         vSeeds.emplace_back("tseed.bryc3c0in-library.org");
-        vSeeds.emplace_back("testseed.ppcoin.info");
+        vSeeds.emplace_back("testseed.bryc3c0in.info");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);

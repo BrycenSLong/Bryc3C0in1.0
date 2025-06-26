@@ -125,7 +125,7 @@ void BlockAssembler::resetBlock()
     nFees = 0;
 }
 
-// peercoin: if pwallet != NULL it will attempt to create coinstake
+// Brycecoin: if pwallet != NULL it will attempt to create coinstake
 std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, bool* pfPoSCancel, NodeContext* m_node, CTxDestination destination)
 {
     const auto time_start{SteadyClock::now()};
@@ -163,7 +163,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     pblocktemplate->vTxFees.push_back(-1); // updated at end
     pblocktemplate->vTxSigOpsCost.push_back(-1); // updated at end
 
-    // peercoin: if coinstake available add coinstake tx
+    // Brycecoin: if coinstake available add coinstake tx
     static int64_t nLastCoinStakeSearchTime = pblock->nTime;  // only initialized at startup
 
 #ifdef ENABLE_WALLET
@@ -190,7 +190,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
             nLastCoinStakeSearchTime = nSearchTime;
         }
         if (*pfPoSCancel)
-            return nullptr; // peercoin: there is no point to continue if we failed to create coinstake
+            return nullptr; // Brycecoin: there is no point to continue if we failed to create coinstake
         pblock->nFlags = CBlockIndex::BLOCK_PROOF_OF_STAKE;
     }
 #endif
@@ -282,7 +282,7 @@ bool BlockAssembler::TestPackageTransactions(const CTxMemPool::setEntries& packa
         if (!IsFinalTx(it->GetTx(), nHeight, m_lock_time_cutoff)) {
             return false;
         }
-        // peercoin: timestamp limit
+        // Brycecoin: timestamp limit
         if (it->GetTx().nTime > TicksSinceEpoch<std::chrono::seconds>(GetAdjustedTime()) || (nTime && it->GetTx().nTime > nTime))
             return false;
     }
@@ -519,7 +519,7 @@ static bool ProcessBlockFound(const CBlock* pblock, const CChainParams& chainpar
     {
         LOCK(cs_main);
         if (pblock->hashPrevBlock != m_node.chainman->ActiveChain().Tip()->GetBlockHash())
-            return error("PeercoinMiner: generated block is stale");
+            return error("BrycecoinMiner: generated block is stale");
     }
 
     // Process this block the same as if we had received it from another node
@@ -549,14 +549,14 @@ void PoSMiner(NodeContext& m_node)
 
     CConnman* connman = m_node.connman.get();
     CWallet* pwallet;
-    // ppctodo: deal with multiple wallets better
+    // BRYtodo: deal with multiple wallets better
     if (m_node.wallet_loader->getWallets().size() && gArgs.GetBoolArg("-minting", true))
         pwallet = m_node.wallet_loader->getWallets()[0]->wallet();
     else
         return;
 
     LogPrintf("CPUMiner started for proof-of-stake\n");
-    util::ThreadRename("peercoin-stake-minter");
+    util::ThreadRename("Brycecoin-stake-minter");
 
     unsigned int nExtraNonce = 0;
 
@@ -646,7 +646,7 @@ void PoSMiner(NodeContext& m_node)
                 }
                 catch (const std::runtime_error &e)
                 {
-                    LogPrintf("PeercoinMiner runtime error: %s\n", e.what());
+                    LogPrintf("BrycecoinMiner runtime error: %s\n", e.what());
                     continue;
                 }
             }
@@ -661,7 +661,7 @@ void PoSMiner(NodeContext& m_node)
                 }
                 strMintWarning = strMintBlockMessage;
                 uiInterface.NotifyAlertChanged();
-                LogPrintf("Error in PeercoinMiner: Keypool ran out, please call keypoolrefill before restarting the mining thread\n");
+                LogPrintf("Error in BrycecoinMiner: Keypool ran out, please call keypoolrefill before restarting the mining thread\n");
                 if (!connman->interruptNet.sleep_for(std::chrono::seconds(10)))
                    return;
 
@@ -670,7 +670,7 @@ void PoSMiner(NodeContext& m_node)
             pblock = &pblocktemplate->block;
             IncrementExtraNonce(pblock, pindexPrev, nExtraNonce);
 
-            // peercoin: if proof-of-stake block found then process block
+            // Brycecoin: if proof-of-stake block found then process block
             if (pblock->IsProofOfStake())
             {
                 {
@@ -687,7 +687,7 @@ void PoSMiner(NodeContext& m_node)
                     }
                 catch (const std::runtime_error &e)
                 {
-                    LogPrintf("PeercoinMiner runtime error: %s\n", e.what());
+                    LogPrintf("BrycecoinMiner runtime error: %s\n", e.what());
                     continue;
                 }
                 // Rest for ~3 minutes after successful block to preserve close quick
@@ -702,18 +702,18 @@ void PoSMiner(NodeContext& m_node)
     }
     catch (::boost::thread_interrupted)
     {
-        LogPrintf("PeercoinMiner terminated\n");
+        LogPrintf("BrycecoinMiner terminated\n");
         return;
     }
     catch (const std::runtime_error &e)
     {
-        LogPrintf("PeercoinMiner runtime error: %s\n", e.what());
+        LogPrintf("BrycecoinMiner runtime error: %s\n", e.what());
         return;
     }
 #endif
 }
 
-// peercoin: stake minter thread
+// Brycecoin: stake minter thread
 void static ThreadStakeMinter(NodeContext& m_node)
 {
     LogPrintf("ThreadStakeMinter started\n");
@@ -732,7 +732,7 @@ void static ThreadStakeMinter(NodeContext& m_node)
     LogPrintf("ThreadStakeMinter exiting\n");
 }
 
-// peercoin: stake minter
+// Brycecoin: stake minter
 void MintStake(NodeContext& m_node)
 {
     m_minter_thread = std::thread([&] { util::TraceThread("minter", [&] { ThreadStakeMinter(m_node); }); });

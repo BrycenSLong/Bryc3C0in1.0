@@ -90,7 +90,7 @@ static constexpr bool DEFAULT_FIXEDSEEDS{true};
 static const size_t DEFAULT_MAXRECEIVEBUFFER = 5 * 1000;
 static const size_t DEFAULT_MAXSENDBUFFER    = 1 * 1000;
 
-/** peercoin: Number of consecutive PoS headers are allowed from a single peer. Used to prevent out of memory attack. */
+/** Brycecoin: Number of consecutive PoS headers are allowed from a single peer. Used to prevent out of memory attack. */
 static const int32_t MAX_CONSECUTIVE_POS_HEADERS = 1000;
 
 // const unsigned int POW_HEADER_COOLING = 70;  - defined in protocol.cpp, so that it is visible to other files
@@ -548,7 +548,7 @@ public:
     /** Lowest measured round-trip time. Used as an inbound peer eviction
      * criterium in CConnman::AttemptToEvictConnection. */
     std::atomic<std::chrono::microseconds> m_min_ping_time{std::chrono::microseconds::max()};
-    // peercoin: used to detect branch switches
+    // Brycecoin: used to detect branch switches
     uint256 lastAcceptedHeader;
 
     CNode(NodeId id,

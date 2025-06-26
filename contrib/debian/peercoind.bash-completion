@@ -1,3 +1,3 @@
-contrib/peercoind.bash-completion	peercoind
-contrib/peercoin-cli.bash-completion	peercoin-cli
-contrib/peercoin-tx.bash-completion	peercoin-tx
+contrib/Brycecoind.bash-completion	Brycecoind
+contrib/Brycecoin-cli.bash-completion	Brycecoin-cli
+contrib/Brycecoin-tx.bash-completion	Brycecoin-tx

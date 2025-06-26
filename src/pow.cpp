@@ -286,8 +286,8 @@ unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfS
     if (!fProofOfStake && IsProtocolV12(pindexPrev) && (nHypotheticalSpacing > nActualSpacing))
         nActualSpacing = nHypotheticalSpacing;
 
-    // peercoin: target change every block
-    // peercoin: retarget with exponential moving toward target spacing
+    // Brycecoin: target change every block
+    // Brycecoin: retarget with exponential moving toward target spacing
     CBigNum bnNew;
     bnNew.SetCompact(pindexPrev->nBits);
     if (Params().NetworkIDString() != CBaseChainParams::REGTEST) {

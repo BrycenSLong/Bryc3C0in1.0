@@ -1,6 +1,6 @@
 # Dependencies
 
-These are the dependencies currently used by Peercoin. You can find instructions for installing them in the `build-*.md` file for your platform.
+These are the dependencies currently used by Brycecoin. You can find instructions for installing them in the `build-*.md` file for your platform.
 
 | Dependency | Minimum required |
 | --- | --- |

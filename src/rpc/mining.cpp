@@ -71,7 +71,7 @@ static UniValue GetNetworkHashPS(int lookup, int height, const CChain& active_ch
     if (pb == nullptr || !pb->nHeight)
         return 0;
 
-    //ppcTODO - redo this to fit peercoin
+    //BRYTODO - redo this to fit Brycecoin
     // If lookup is -1, then use blocks since last difficulty change.
 //    if (lookup <= 0)
 //        lookup = pb->nHeight % Params().GetConsensus().DifficultyAdjustmentInterval() + 1;
@@ -125,7 +125,7 @@ static RPCHelpMan getnetworkhashps()
     };
 }
 
-// peercoin: get network Gh/s estimate
+// Brycecoin: get network Gh/s estimate
 static RPCHelpMan getnetworkghps()
 {
     return RPCHelpMan{"getnetworkghps",
@@ -300,7 +300,7 @@ static RPCHelpMan generatetoaddress()
         "Mine to a specified address and return the block hashes.",
          {
              {"nblocks", RPCArg::Type::NUM, RPCArg::Optional::NO, "How many blocks are generated."},
-             {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The address to send the newly generated peercoin to."},
+             {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The address to send the newly generated Brycecoin to."},
              {"maxtries", RPCArg::Type::NUM, RPCArg::Default{DEFAULT_MAX_TRIES}, "How many iterations to try."},
          },
          RPCResult{
@@ -311,7 +311,7 @@ static RPCHelpMan generatetoaddress()
          RPCExamples{
             "\nGenerate 11 blocks to myaddress\n"
             + HelpExampleCli("generatetoaddress", "11 \"myaddress\"")
-            + "If you are using the " PACKAGE_NAME " wallet, you can get a new address to send the newly generated peercoin to with:\n"
+            + "If you are using the " PACKAGE_NAME " wallet, you can get a new address to send the newly generated Brycecoin to with:\n"
             + HelpExampleCli("getnewaddress", "")
                 },
         [&](const RPCHelpMan& self, const JSONRPCRequest& request) -> UniValue
@@ -948,7 +948,7 @@ static RPCHelpMan submitblock()
         }
     }
 
-    // peercoin: check block before attempting to sign it
+    // Brycecoin: check block before attempting to sign it
     BlockValidationState state;
     if (!CheckBlock(block, state, Params().GetConsensus(), true,  true, false)) {
         LogPrintf("SubmitBlock: %s\n", state.ToString());

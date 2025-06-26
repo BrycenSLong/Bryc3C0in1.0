@@ -88,7 +88,7 @@ void WalletController::closeWallet(WalletModel* wallet_model, QWidget* parent)
     box.setDefaultButton(QMessageBox::Yes);
     if (box.exec() != QMessageBox::Yes) return;
 
-    // peercoin: stop minter thread
+    // Brycecoin: stop minter thread
     if (m_minter_thread.joinable()) {
         m_minter_thread.join();
     }
@@ -171,7 +171,7 @@ WalletModel* WalletController::getOrCreateWallet(std::unique_ptr<interfaces::Wal
 
     Q_EMIT walletAdded(wallet_model);
 
-    // peercoin: start pos miner if it's not running already
+    // Brycecoin: start pos miner if it's not running already
     if (!m_minter_thread.joinable()) {
         node::NodeContext& tmpNode = *m_node.context();
         node::MintStake(tmpNode);

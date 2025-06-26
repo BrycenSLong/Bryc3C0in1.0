@@ -95,11 +95,11 @@ HashWriter TaggedHash(const std::string& tag)
     return writer;
 }
 
-int32_t peercoinRandseed;
+int32_t BrycecoinRandseed;
 int univHash(const uint256 &x) {
-  int h = peercoinRandseed >> 20;
+  int h = BrycecoinRandseed >> 20;
   const uint32_t *p = (const uint32_t *) x.data();
   for(int i = 0; i < 8; i++)
-    h ^=  (p[i] >> (h & 0xf)) + (peercoinRandseed >> i);
+    h ^=  (p[i] >> (h & 0xf)) + (BrycecoinRandseed >> i);
   return (h + (h >> 16))  & 1023; // 2^n - 1
 }

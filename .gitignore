@@ -85,7 +85,7 @@ src/qt/bitcoin-qt.includes
 *.o
 *.o-*
 .ppcoin
-.peercoin
+.Brycecoin
 *.a
 *.pb.cc
 *.pb.h

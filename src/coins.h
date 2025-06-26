@@ -41,10 +41,10 @@ public:
     //! at which height this containing transaction was included in the active block chain
     uint32_t nHeight : 31;
 
-    // peercoin: whether transaction is a coinstake
+    // Brycecoin: whether transaction is a coinstake
     bool fCoinStake;
 
-    // peercoin: transaction timestamp
+    // Brycecoin: transaction timestamp
     unsigned int nTime;
 
     //! construct a Coin from a CTxOut and height/coinbase information.
@@ -68,7 +68,7 @@ public:
         return fCoinBase;
     }
 
-    bool IsCoinStake() const { // peercoin: coinstake
+    bool IsCoinStake() const { // Brycecoin: coinstake
         return fCoinStake;
     }
 
@@ -78,10 +78,10 @@ public:
         uint32_t code = nHeight * uint32_t{2} + fCoinBase;
         ::Serialize(s, VARINT(code));
         ::Serialize(s, Using<TxOutCompression>(out));
-        // peercoin flags
+        // Brycecoin flags
         unsigned int nFlag = fCoinStake? 1 : 0;
         ::Serialize(s, VARINT(nFlag));
-        // peercoin transaction timestamp
+        // Brycecoin transaction timestamp
         ::Serialize(s, VARINT(nTime));
     }
 
@@ -92,11 +92,11 @@ public:
         nHeight = code >> 1;
         fCoinBase = code & 1;
         ::Unserialize(s, Using<TxOutCompression>(out));
-        // peercoin flags
+        // Brycecoin flags
         unsigned int nFlag = 0;
         ::Unserialize(s, VARINT(nFlag));
         fCoinStake = nFlag & 1;
-        // peercoin transaction timestamp
+        // Brycecoin transaction timestamp
         ::Unserialize(s, VARINT(nTime));
     }
 

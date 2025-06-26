@@ -172,7 +172,7 @@ bool BlockManager::LoadBlockIndex(const Consensus::Params& consensus_params)
         if (pindex->pprev) {
             pindex->BuildSkip();
         }
-        // peercoin: calculate stake modifier checksum
+        // Brycecoin: calculate stake modifier checksum
         pindex->nStakeModifierChecksum = GetStakeModifierChecksum(pindex);
         //if (chainman.ActiveChain().Contains(pindex))
         if (pindex->nStatus & BLOCK_HAVE_DATA) {

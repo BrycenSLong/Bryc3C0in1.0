@@ -733,7 +733,7 @@ void SendCoinsDialog::processSendCoinsReturn(const WalletModel::SendCoinsReturn 
         msgParams.first = tr("The recipient address is not valid. Please recheck.");
         break;
     case WalletModel::InvalidAmount:
-        msgParams.first = tr("The amount to pay must be at least one cent (0.01).");
+        msgParams.first = tr("The amount to pay must be at least one scott (0.01).");
         break;
     case WalletModel::AmountExceedsBalance:
         msgParams.first = tr("The amount exceeds your balance.");
@@ -976,7 +976,7 @@ void SendCoinsDialog::coinControlChangeEdited(const QString& text)
         }
         else if (!IsValidDestination(dest)) // Invalid address
         {
-            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid Peercoin address"));
+            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid Brycecoin address"));
         }
         else // Valid address
         {

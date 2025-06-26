@@ -290,7 +290,7 @@ inline uint160 RIPEMD160(Span<const unsigned char> data)
     return result;
 }
 
-extern int32_t peercoinRandseed;
+extern int32_t BrycecoinRandseed;
 int univHash(const uint256 &x);
 
 #endif // BITCOIN_HASH_H

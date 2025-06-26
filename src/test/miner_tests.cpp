@@ -136,7 +136,7 @@ void MinerTestingSetup::TestPackageSelection(const CScript& scriptPubKey, const 
     BOOST_CHECK(pblocktemplate->block.vtx[2]->GetHash() == hashHighFeeTx);
     BOOST_CHECK(pblocktemplate->block.vtx[3]->GetHash() == hashMediumFeeTx);
 
-    // rest does not apply to peercoin
+    // rest does not apply to Brycecoin
     return;
     // Test that a package below the block min tx fee doesn't get included
     tx.vin[0].prevout.hash = hashHighFeeTx;
@@ -260,7 +260,7 @@ void MinerTestingSetup::TestBasicMining(const CScript& scriptPubKey, const std::
     BOOST_CHECK(pblocktemplate);
 */
     const CAmount BLOCKSUBSIDY = 50*COIN;
-    const CAmount LOWFEE = CENT;
+    const CAmount LOWFEE = scott;
     const CAmount HIGHFEE = COIN;
     const CAmount HIGHERFEE = 4 * COIN;
 
@@ -698,7 +698,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     SetMockTime(0);
 
     TestPackageSelection(scriptPubKey, txFirst);
-    // rest does not apply to peercoin
+    // rest does not apply to Brycecoin
     return;
     m_node.chainman->ActiveChain().Tip()->nHeight--;
     SetMockTime(0);

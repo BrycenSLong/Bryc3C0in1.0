@@ -215,7 +215,7 @@ static RPCHelpMan loadwallet()
 {
     return RPCHelpMan{"loadwallet",
                 "\nLoads a wallet from a wallet file or directory."
-                "\nNote that all wallet command-line options used when starting peercoind will be"
+                "\nNote that all wallet command-line options used when starting Brycecoind will be"
                 "\napplied to the new wallet.\n",
                 {
                     {"filename", RPCArg::Type::STR, RPCArg::Optional::NO, "The wallet directory or .dat file."},
@@ -703,11 +703,11 @@ static RPCHelpMan reservebalance()
                 "Set reserve amount not participating in network protection.\n",
                 {
                     {"reserve", RPCArg::Type::BOOL, RPCArg::Optional::OMITTED, "turn balance reserve on or off."},
-                    {"amount", RPCArg::Type::NUM, RPCArg::Optional::OMITTED, "amount of peercoin to be reserved."},
+                    {"amount", RPCArg::Type::NUM, RPCArg::Optional::OMITTED, "amount of Brycecoin to be reserved."},
                 },
                 RPCResult{RPCResult::Type::OBJ, "", "", {
                     {RPCResult::Type::BOOL, "reserve", "status of reserve."},
-                    {RPCResult::Type::NUM, "amount", "amount of peercoin reserved."},
+                    {RPCResult::Type::NUM, "amount", "amount of Brycecoin reserved."},
                 }},
                 RPCExamples{
                     HelpExampleCli("reservebalance", "true 10")
@@ -731,7 +731,7 @@ static RPCHelpMan reservebalance()
             if (request.params.size() == 1)
                 throw std::runtime_error("must provide amount to reserve balance.\n");
             int64_t nAmount = AmountFromValue(request.params[1]);
-            nAmount = (nAmount / CENT) * CENT;  // round to cent
+            nAmount = (nAmount / scott) * scott;  // round to scott
             if (nAmount < 0)
                 throw std::runtime_error("amount cannot be negative.\n");
             args.ForceSetArg("-reservebalance", FormatMoney(nAmount));
@@ -1205,7 +1205,7 @@ static const CRPCCommand commands[] =
     { "wallet",             &walletpassphrase,               },
     { "wallet",             &walletpassphrasechange,         },
     { "wallet",             &walletprocesspsbt,              },
-    // peercoin commands
+    // Brycecoin commands
     { "wallet",             &importcoinstake,                },
     { "wallet",             &listminting,                    },
     { "wallet",             &reservebalance,                 },
