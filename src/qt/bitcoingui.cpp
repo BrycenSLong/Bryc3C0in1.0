@@ -265,14 +265,14 @@ void BitcoinGUI::createActions()
     tabGroup->addAction(overviewAction);
 
     sendCoinsAction = new QAction(QIcon(":/icons/send"), tr("&Send"), this);
-    sendCoinsAction->setStatusTip(tr("Send coins to a Peercoin address"));
+    sendCoinsAction->setStatusTip(tr("Send coins to a Bryc3C0in address"));
     sendCoinsAction->setToolTip(sendCoinsAction->statusTip());
     sendCoinsAction->setCheckable(true);
     sendCoinsAction->setShortcut(QKeySequence(QStringLiteral("Alt+2")));
     tabGroup->addAction(sendCoinsAction);
 
     receiveCoinsAction = new QAction(QIcon(":/icons/receiving_addresses"), tr("&Receive"), this);
-    receiveCoinsAction->setStatusTip(tr("Request payments (generates QR codes and peercoin: URIs)"));
+    receiveCoinsAction->setStatusTip(tr("Request payments (generates QR codes and bryc3c0in: URIs)"));
     receiveCoinsAction->setToolTip(receiveCoinsAction->statusTip());
     receiveCoinsAction->setCheckable(true);
     receiveCoinsAction->setShortcut(QKeySequence(QStringLiteral("Alt+3")));
@@ -348,9 +348,9 @@ void BitcoinGUI::createActions()
     changePassphraseAction = new QAction(tr("&Change Passphrase…"), this);
     changePassphraseAction->setStatusTip(tr("Change the passphrase used for wallet encryption"));
     signMessageAction = new QAction(tr("Sign &Message..."), this);
-    signMessageAction->setStatusTip(tr("Sign messages with your Peercoin addresses to prove you own them"));
+    signMessageAction->setStatusTip(tr("Sign messages with your Bryc3C0in addresses to prove you own them"));
     verifyMessageAction = new QAction(tr("&Verify Message..."), this);
-    verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified Peercoin addresses"));
+    verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified Bryc3C0in addresses"));
     m_load_psbt_action = new QAction(tr("&Load PSBT from file…"), this);
     m_load_psbt_action->setStatusTip(tr("Load Partially Signed Bitcoin Transaction"));
     m_load_psbt_clipboard_action = new QAction(tr("Load PSBT from &clipboard…"), this);
@@ -368,9 +368,10 @@ void BitcoinGUI::createActions()
     usedReceivingAddressesAction->setStatusTip(tr("Show the list of used receiving addresses and labels"));
 
     openAction = new QAction(tr("Open &URI…"), this);
-    openAction->setStatusTip(tr("Open a peercoin: URI"));
+    openAction->setStatusTip(tr("Open a bryc3c0in: URI"));
 
     showHelpMessageAction = new QAction(tr("&Command-line Options"), this);
+    showHelpMessageAction->setStatusTip(tr("Show the %1 help message to get a list with possible Bryc3C0in command-line options").arg(PACKAGE_NAME));
 
     m_open_wallet_action = new QAction(tr("Open Wallet"), this);
     m_open_wallet_action->setEnabled(false);
@@ -392,19 +393,19 @@ void BitcoinGUI::createActions()
 
     m_close_all_wallets_action = new QAction(tr("Close All Wallets…"), this);
     showHelpMessageAction->setMenuRole(QAction::NoRole);
-    showHelpMessageAction->setStatusTip(tr("Show the %1 help message to get a list with possible Peercoin command-line options").arg(PACKAGE_NAME));
+    showHelpMessageAction->setStatusTip(tr("Show the %1 help message to get a list with possible Bryc3C0in command-line options").arg(PACKAGE_NAME));
 
     openWebAction = new QAction(tr("&Website"), this);
-    openWebAction->setStatusTip(tr("Open the Peercoin website in a web browser."));
+    openWebAction->setStatusTip(tr("Open the Bryc3C0in website in a web browser."));
 
     openDonateAction = new QAction(tr("&Donate"), this);
-    openDonateAction->setStatusTip(tr("Finacially support development of the Peercoin project."));
+    openDonateAction->setStatusTip(tr("Finacially support development of the Bryc3C0in project."));
 
     openChatroomAction = new QAction(tr("&Chatroom"), this);
-    openChatroomAction->setStatusTip(tr("Open the Peercoin Discord chat in a web browser."));
+    openChatroomAction->setStatusTip(tr("Open the Bryc3C0in Discord chat in a web browser."));
 
     openForumAction = new QAction(tr("&Forum"), this);
-    openForumAction->setStatusTip(tr("Open talk.peercoin.net in a web browser."));
+    openForumAction->setStatusTip(tr("Open talk.bryc3c0in.net in a web browser."));
 
     m_mask_values_action = new QAction(tr("&Mask values"), this);
     m_mask_values_action->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_M));
@@ -939,7 +940,7 @@ void BitcoinGUI::createTrayIconMenu()
                     tr("&Hide") :
                     tr("S&how"));
             if (QApplication::activeModalWidget()) {
-                for (QAction* a : trayIconMenu.get()->actions()) {
+                for (QAction* a : trayIconMenu->get()->actions()) {
                     a->setEnabled(false);
                 }
             } else {
@@ -1043,11 +1044,11 @@ void BitcoinGUI::gotoLoadPSBT(bool from_clipboard)
 #endif // ENABLE_WALLET
 
 void BitcoinGUI::openWeb() {
-    QDesktopServices::openUrl(QUrl("https://peercoin.net"));
+    QDesktopServices::openUrl(QUrl("https://bryc3c0in.net"));
 }
 
 void BitcoinGUI::openDonate() {
-    QDesktopServices::openUrl(QUrl("https://www.peercoin.net/foundation"));
+    QDesktopServices::openUrl(QUrl("https://www.bryc3c0in.net/foundation"));
 }
 
 void BitcoinGUI::openChatroom() {
@@ -1055,7 +1056,7 @@ void BitcoinGUI::openChatroom() {
 }
 
 void BitcoinGUI::openForum() {
-    QDesktopServices::openUrl(QUrl("https://talk.peercoin.net"));
+    QDesktopServices::openUrl(QUrl("https://talk.bryc3c0in.net"));
 }
 
 void BitcoinGUI::updateNetworkState()
@@ -1075,7 +1076,7 @@ void BitcoinGUI::updateNetworkState()
 
     if (m_node.getNetworkActive()) {
         //: A substring of the tooltip.
-        tooltip = tr("%n active connection(s) to Peercoin network.", "", count);
+        tooltip = tr("%n active connection(s) to Bryc3C0in network.", "", count);
     } else {
         //: A substring of the tooltip.
         tooltip = tr("Network activity disabled.");

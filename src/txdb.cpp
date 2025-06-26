@@ -319,7 +319,7 @@ bool CBlockTreeDB::LoadBlockIndexGuts(const Consensus::Params& consensusParams, 
                 pindexNew->nStatus        = diskindex.nStatus;
                 pindexNew->nTx            = diskindex.nTx;
 
-                 // peercoin related block index fields
+                 // bryc3c0in related block index fields
                 pindexNew->nMint          = diskindex.nMint;
                 pindexNew->nMoneySupply   = diskindex.nMoneySupply;
                 pindexNew->nFlags         = diskindex.nFlags;
@@ -360,10 +360,10 @@ public:
     //! at which height this transaction was included in the active block chain
     int nHeight;
 
-    // peercoin: whether transaction is a coinstake
+    // bryc3c0in: whether transaction is a coinstake
     bool fCoinStake;
 
-    // peercoin: transaction timestamp
+    // bryc3c0in: transaction timestamp
     unsigned int nTime;
 
     //! empty constructor

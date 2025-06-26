@@ -8,17 +8,16 @@ schnorr_example
 *.exe
 *.pdb
 src/*/*.exe
-src/peercoin
-src/peercoind
-src/peercoin-cli
-src/peercoin-gui
-src/peercoin-node
-src/peercoin-tx
-src/peercoin-util
-src/peercoin-wallet
-src/test/fuzz/fuzz
-src/test/test_peercoin
-src/qt/test/test_peercoin-qt
+src/bryc3c0in
+src/bryc3c0ind
+src/bryc3c0in-cli
+src/bryc3c0in-gui
+src/bryc3c0in-node
+src/bryc3c0in-tx
+src/bryc3c0in-util
+src/bryc3c0in-wallet
+src/test/test_bryc3c0in
+src/qt/test/test_bryc3c0in-qt
 
 # autoreconf
 Makefile.in
@@ -112,9 +111,9 @@ src/qt/bitcoin-qt.includes
 *.qm
 Makefile
 !depends/Makefile
-src/qt/peercoin-qt
+src/qt/bryc3c0in-qt
 PPCoin-Qt.app
-Peercoin-Qt.app
+Bryc3C0in-Qt.app
 
 # Qt Creator
 Makefile.am.user
@@ -122,7 +121,7 @@ Makefile.am.user
 # Unit-tests
 Makefile.test
 ppcoin-qt_test
-peercoin-qt_test
+bryc3c0in-qt_test
 
 # Resources cpp
 qrc_*.cpp
@@ -174,3 +173,5 @@ dist/
 /guix-build-*
 
 /ci/scratch/
+
+# .bryc3c0in

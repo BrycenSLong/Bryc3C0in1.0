@@ -5,14 +5,14 @@ define(_CLIENT_VERSION_BUILD, 0)
 define(_CLIENT_VERSION_RC, 0)
 define(_CLIENT_VERSION_IS_RELEASE, true)
 define(_COPYRIGHT_YEAR, 2025)
-define(_PEERCOIN_VERSION_MAJOR, 0)
-define(_PEERCOIN_VERSION_MINOR, 15)
-define(_PEERCOIN_VERSION_REVISION, 1)
-define(_PEERCOIN_VERSION_BUILD, 0)
-define(_PEERCOIN_VERSION_RC, 0)
+define(_BRYC3C0IN_VERSION_MAJOR, 0)
+define(_BRYC3C0IN_VERSION_MINOR, 15)
+define(_BRYC3C0IN_VERSION_REVISION, 1)
+define(_BRYC3C0IN_VERSION_BUILD, 0)
+define(_BRYC3C0IN_VERSION_RC, 0)
 define(_COPYRIGHT_HOLDERS,[The %s developers])
-define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Peercoin]])
-AC_INIT([Peercoin],m4_join([.], _PEERCOIN_VERSION_MAJOR._PEERCOIN_VERSION_MINOR._PEERCOIN_VERSION_REVISION, m4_if(_PEERCOIN_VERSION_BUILD, [0], [], _PEERCOIN_VERSION_BUILD))m4_if(_PEERCOIN_VERSION_RC, [0], [], [rc]_PEERCOIN_VERSION_RC),[https://github.com/peercoin/peercoin/issues],[peercoin],[https://peercoin.net/])
+define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Bryc3C0in]])
+AC_INIT([Bryc3C0in],m4_join([.], _BRYC3C0IN_VERSION_MAJOR._BRYC3C0IN_VERSION_MINOR._BRYC3C0IN_VERSION_REVISION, m4_if(_BRYC3C0IN_VERSION_BUILD, [0], [], _BRYC3C0IN_VERSION_BUILD))m4_if(_BRYC3C0IN_VERSION_RC, [0], [], [rc]_BRYC3C0IN_VERSION_RC),[https://github.com/bryc3c0in/bryc3c0in/issues],[bryc3c0in],[https://bryc3c0in.net/])
 AC_CONFIG_SRCDIR([src/validation.cpp])
 AC_CONFIG_HEADERS([src/config/bitcoin-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
@@ -34,17 +34,17 @@ if test -n "$PKG_CONFIG_LIBDIR"; then
   PKG_CONFIG="env PKG_CONFIG_LIBDIR=$PKG_CONFIG_LIBDIR $PKG_CONFIG"
 fi
 
-BITCOIN_DAEMON_NAME=peercoind
-BITCOIN_GUI_NAME=peercoin-qt
-BITCOIN_TEST_NAME=test_peercoin
-BITCOIN_CLI_NAME=peercoin-cli
-BITCOIN_TX_NAME=peercoin-tx
-BITCOIN_UTIL_NAME=peercoin-util
-BITCOIN_CHAINSTATE_NAME=peercoin-chainstate
-BITCOIN_WALLET_TOOL_NAME=peercoin-wallet
+BITCOIN_DAEMON_NAME=bryc3c0ind
+BITCOIN_GUI_NAME=bryc3c0in-qt
+BITCOIN_TEST_NAME=test_bryc3c0in
+BITCOIN_CLI_NAME=bryc3c0in-cli
+BITCOIN_TX_NAME=bryc3c0in-tx
+BITCOIN_UTIL_NAME=bryc3c0in-util
+BITCOIN_CHAINSTATE_NAME=bryc3c0in-chainstate
+BITCOIN_WALLET_TOOL_NAME=bryc3c0in-wallet
 dnl Multi Process
-BITCOIN_MP_NODE_NAME=peercoin-node
-BITCOIN_MP_GUI_NAME=peercoin-gui
+BITCOIN_MP_NODE_NAME=bryc3c0in-node
+BITCOIN_MP_GUI_NAME=bryc3c0in-gui
 
 dnl Unless the user specified ARFLAGS, force it to be cr
 dnl This is also the default as-of libtool 2.4.7
@@ -619,7 +619,7 @@ CXXFLAGS="$TEMP_CXXFLAGS"
 TEMP_CXXFLAGS="$CXXFLAGS"
 CXXFLAGS="$ARM_SHANI_CXXFLAGS $CXXFLAGS"
 AC_MSG_CHECKING([for ARMv8 SHA-NI intrinsics])
-AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
+AC_COMPILE_IF_ELSE([AC_LANG_PROGRAM([[
     #include <arm_acle.h>
     #include <arm_neon.h>
   ]],[[
@@ -788,7 +788,7 @@ case $host in
              fi
              if test "$use_natpmp" != "no" && $BREW list --versions libnatpmp >/dev/null; then
                libnatpmp_prefix=$($BREW --prefix libnatpmp 2>/dev/null)
-               if test "$suppress_external_warnings" != "no"; then
+               if test "$suppress_external_warnings" != "no" ]; then
                  NATPMP_CPPFLAGS="-isystem $libnatpmp_prefix/include"
                else
                  NATPMP_CPPFLAGS="-I$libnatpmp_prefix/include"
@@ -1043,7 +1043,7 @@ AC_MSG_CHECKING([for __builtin_clzl])
 AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[ ]], [[
  (void) __builtin_clzl(0);
   ]])],
- [ AC_MSG_RESULT([yes]); have_clzl=yes; AC_DEFINE([HAVE_BUILTIN_CLZL], [1], [Define this symbol if you have __builtin_clzl])],
+ [ AC_MSG_RESULT([yes]); AC_DEFINE([HAVE_BUILTIN_CLZL], [1], [Define this symbol if you have __builtin_clzl])],
  [ AC_MSG_RESULT([no]); have_clzl=no;]
 )
 
@@ -1051,7 +1051,7 @@ AC_MSG_CHECKING([for __builtin_clzll])
 AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[ ]], [[
   (void) __builtin_clzll(0);
   ]])],
- [ AC_MSG_RESULT([yes]); have_clzll=yes; AC_DEFINE([HAVE_BUILTIN_CLZLL], [1], [Define this symbol if you have __builtin_clzll])],
+ [ AC_MSG_RESULT([yes]); AC_DEFINE([HAVE_BUILTIN_CLZLL], [1], [Define this symbol if you have __builtin_clzll])],
  [ AC_MSG_RESULT([no]); have_clzll=no;]
 )
 
@@ -1158,12 +1158,12 @@ fi
 dnl check for gmtime_r(), fallback to gmtime_s() if that is unavailable
 dnl fail if neither are available.
 AC_MSG_CHECKING([for gmtime_r])
-AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <ctime>]],
+AC_COMPILE_IF_ELSE([AC_LANG_PROGRAM([[#include <ctime>]],
   [[ gmtime_r((const time_t *) nullptr, (struct tm *) nullptr); ]])],
   [ AC_MSG_RESULT([yes]); AC_DEFINE([HAVE_GMTIME_R], [1], [Define this symbol if gmtime_r is available]) ],
   [ AC_MSG_RESULT([no]);
     AC_MSG_CHECKING([for gmtime_s]);
-    AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <ctime>]],
+    AC_COMPILE_IF_ELSE([AC_LANG_PROGRAM([[#include <ctime>]],
        [[ gmtime_s((struct tm *) nullptr, (const time_t *) nullptr); ]])],
        [ AC_MSG_RESULT([yes])],
        [ AC_MSG_RESULT([no]); AC_MSG_ERROR([Both gmtime_r and gmtime_s are unavailable]) ]
@@ -1173,7 +1173,7 @@ AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <ctime>]],
 
 dnl Check for different ways of gathering OS randomness
 AC_MSG_CHECKING([for Linux getrandom syscall])
-AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <unistd.h>
+AC_COMPILE_IF_ELSE([AC_LANG_PROGRAM([[#include <unistd.h>
   #include <sys/syscall.h>
   #include <linux/random.h>]],
  [[ syscall(SYS_getrandom, nullptr, 32, 0); ]])],
@@ -1182,7 +1182,7 @@ AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <unistd.h>
 )
 
 AC_MSG_CHECKING([for getentropy via random.h])
-AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <unistd.h>
+AC_COMPILE_IF_ELSE([AC_LANG_PROGRAM([[#include <unistd.h>
  #include <sys/random.h>]],
  [[ getentropy(nullptr, 32) ]])],
  [ AC_MSG_RESULT([yes]); AC_DEFINE([HAVE_GETENTROPY_RAND], [1], [Define this symbol if the BSD getentropy system call is available with sys/random.h]) ],
@@ -1190,7 +1190,7 @@ AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <unistd.h>
 )
 
 AC_MSG_CHECKING([for sysctl])
-AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <sys/types.h>
+AC_COMPILE_IF_ELSE([AC_LANG_PROGRAM([[#include <sys/types.h>
   #include <sys/sysctl.h>]],
  [[ #ifdef __linux__
     #error "Don't use sysctl on Linux, it's deprecated even when it works"
@@ -1201,7 +1201,7 @@ AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <sys/types.h>
 )
 
 AC_MSG_CHECKING([for sysctl KERN_ARND])
-AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <sys/types.h>
+AC_COMPILE_IF_ELSE([AC_LANG_PROGRAM([[#include <sys/types.h>
   #include <sys/sysctl.h>]],
  [[ #ifdef __linux__
     #error "Don't use sysctl on Linux, it's deprecated even when it works"
@@ -1213,7 +1213,7 @@ AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <sys/types.h>
 )
 
 AC_MSG_CHECKING([for if type char equals int8_t])
-AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <stdint.h>
+AC_COMPILE_IF_ELSE([AC_LANG_PROGRAM([[#include <stdint.h>
   #include <type_traits>]],
  [[ static_assert(std::is_same<int8_t, char>::value, ""); ]])],
  [ AC_MSG_RESULT([yes]); AC_DEFINE([CHAR_EQUALS_INT8], [1], [Define this symbol if type char equals int8_t]) ],
@@ -1221,7 +1221,7 @@ AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <stdint.h>
 )
 
 AC_MSG_CHECKING([for fdatasync])
-AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <unistd.h>]],
+AC_COMPILE_IF_ELSE([AC_LANG_PROGRAM([[#include <unistd.h>]],
  [[ fdatasync(0); ]])],
  [ AC_MSG_RESULT([yes]); HAVE_FDATASYNC=1 ],
  [ AC_MSG_RESULT([no]); HAVE_FDATASYNC=0 ]
@@ -1229,14 +1229,14 @@ AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <unistd.h>]],
 AC_DEFINE_UNQUOTED([HAVE_FDATASYNC], [$HAVE_FDATASYNC], [Define to 1 if fdatasync is available.])
 
 AC_MSG_CHECKING([for F_FULLFSYNC])
-AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <fcntl.h>]],
+AC_COMPILE_IF_ELSE([AC_LANG_PROGRAM([[#include <fcntl.h>]],
  [[ fcntl(0, F_FULLFSYNC, 0); ]])],
  [ AC_MSG_RESULT([yes]); HAVE_FULLFSYNC=1 ],
  [ AC_MSG_RESULT([no]); HAVE_FULLFSYNC=0 ]
 )
 
 AC_MSG_CHECKING([for O_CLOEXEC])
-AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <fcntl.h>]],
+AC_COMPILE_IF_ELSE([AC_LANG_PROGRAM([[#include <fcntl.h>]],
  [[ open("", O_CLOEXEC); ]])],
  [ AC_MSG_RESULT([yes]); HAVE_O_CLOEXEC=1 ],
  [ AC_MSG_RESULT([no]); HAVE_O_CLOEXEC=0 ]
@@ -1245,7 +1245,7 @@ AC_DEFINE_UNQUOTED([HAVE_O_CLOEXEC], [$HAVE_O_CLOEXEC], [Define to 1 if O_CLOEXE
 
 dnl crc32c platform checks
 AC_MSG_CHECKING([for __builtin_prefetch])
-AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[ ]], [[
+AC_COMPILE_IF_ELSE([AC_LANG_PROGRAM([[ ]], [[
   char data = 0;
   const char* address = &data;
   __builtin_prefetch(address, 0, 0);
@@ -1255,7 +1255,7 @@ AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[ ]], [[
 )
 
 AC_MSG_CHECKING([for _mm_prefetch])
-AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <xmmintrin.h>]], [[
+AC_COMPILE_IF_ELSE([AC_LANG_PROGRAM([[#include <xmmintrin.h>]], [[
   char data = 0;
   const char* address = &data;
   _mm_prefetch(address, _MM_HINT_NTA);
@@ -1265,7 +1265,7 @@ AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <xmmintrin.h>]], [[
 )
 
 AC_MSG_CHECKING([for strong getauxval support in the system headers])
-AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
+AC_COMPILE_IF_ELSE([AC_LANG_PROGRAM([[
     #include <sys/auxv.h>
   ]], [[
     getauxval(AT_HWCAP);
@@ -1276,7 +1276,7 @@ AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
 
 have_any_system=no
 AC_MSG_CHECKING([for std::system])
-AC_LINK_IFELSE(
+AC_LINK_IF_ELSE(
     [ AC_LANG_PROGRAM(
         [[ #include <cstdlib> ]],
         [[ int nErr = std::system(""); ]]
@@ -1286,7 +1286,7 @@ AC_LINK_IFELSE(
 )
 
 AC_MSG_CHECKING([for ::_wsystem])
-AC_LINK_IFELSE(
+AC_LINK_IF_ELSE(
     [ AC_LANG_PROGRAM(
         [[ #include <stdlib.h> ]],
         [[ int nErr = ::_wsystem(NULL); ]]
@@ -1428,7 +1428,7 @@ fi
 
 if test "$use_usdt" != "no"; then
   AC_MSG_CHECKING([whether Userspace, Statically Defined Tracing tracepoints are supported])
-  AC_COMPILE_IFELSE([
+  AC_COMPILE_IF_ELSE([
     AC_LANG_PROGRAM(
       [#include <sys/sdt.h>],
       [DTRACE_PROBE("context", "event");]
@@ -1494,7 +1494,7 @@ if test "$use_natpmp" != "no"; then
   CPPFLAGS="$TEMP_CPPFLAGS"
 fi
 
-if test "$build_bitcoin_wallet$build_bitcoin_cli$build_bitcoin_tx$build_bitcoin_util$build_bitcoind$bitcoin_enable_qt$use_tests$use_bench$enable_fuzz_binary" = "nonononononononono"; then
+if test "$build_bitcoin_wallet$build_bitcoin_cli$build_bitcoin_tx$build_bitcoin_util$build_bitcoind$bitcoin_enable_qt$use_tests$use_bench$enable_fuzz_binary" = "nononononononononono"; then
   use_boost=no
 else
   use_boost=yes
@@ -1534,7 +1534,7 @@ if test "$use_external_signer" != "no"; then
   TEMP_LDFLAGS="$LDFLAGS"
   dnl Boost 1.73 and older require the following workaround.
   LDFLAGS="$LDFLAGS $PTHREAD_CFLAGS"
-  AC_LINK_IFELSE([AC_LANG_PROGRAM([[
+  AC_LINK_IF_ELSE([AC_LANG_PROGRAM([[
     #define BOOST_PROCESS_USE_STD_FS
     #include <boost/process.hpp>
   ]],[[
@@ -1575,7 +1575,7 @@ if test "$use_sanitizers" != ""; then
 fi
 if test "$seccomp_found" != "no"; then
   AC_MSG_CHECKING([for seccomp-bpf (Linux x86-64)])
-  AC_PREPROC_IFELSE([AC_LANG_PROGRAM([[
+  AC_PREPROC_IF_ELSE([AC_LANG_PROGRAM([[
       @%:@include <linux/seccomp.h>
     ]], [[
       #if !defined(__x86_64__)
@@ -1605,7 +1605,7 @@ if test x$use_sanitizers != x; then
 fi
 if test "x$seccomp_found" != "xno"; then
   AC_MSG_CHECKING([for seccomp-bpf (Linux x86-64)])
-  AC_PREPROC_IFELSE([AC_LANG_PROGRAM([[
+  AC_PREPROC_IF_ELSE([AC_LANG_PROGRAM([[
       @%:@include <linux/seccomp.h>
     ]], [[
       #if !defined(__x86_64__)
@@ -1661,7 +1661,7 @@ if test x$use_libevent = xyes; then
   TEMP_CXXFLAGS="$CXXFLAGS"
   CXXFLAGS="$CXXFLAGS $EVENT_CFLAGS"
   AC_MSG_CHECKING([if evhttp_connection_get_peer expects const char**])
-  AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
+  AC_COMPILE_IF_ELSE([AC_LANG_PROGRAM([[
       #include <cstdint>
       #include <event2/http.h>
     ]], [[
@@ -1985,10 +1985,10 @@ AC_DEFINE([CLIENT_VERSION_MAJOR], [_CLIENT_VERSION_MAJOR], [Major version])
 AC_DEFINE([CLIENT_VERSION_MINOR], [_CLIENT_VERSION_MINOR], [Minor version])
 AC_DEFINE([CLIENT_VERSION_BUILD], [_CLIENT_VERSION_BUILD], [Version Build])
 AC_DEFINE([CLIENT_VERSION_IS_RELEASE], [_CLIENT_VERSION_IS_RELEASE], [Version is release])
-AC_DEFINE([PEERCOIN_VERSION_MAJOR], [_PEERCOIN_VERSION_MAJOR], [Peercoin major version])
-AC_DEFINE([PEERCOIN_VERSION_MINOR], [_PEERCOIN_VERSION_MINOR], [Peercoin minor version])
-AC_DEFINE([PEERCOIN_VERSION_REVISION], [_PEERCOIN_VERSION_REVISION], [Peercoin build revision])
-AC_DEFINE([PEERCOIN_VERSION_BUILD], [_PEERCOIN_VERSION_BUILD], [Peercoin version Build])
+AC_DEFINE([BRYC3C0IN_VERSION_MAJOR], [_BRYC3C0IN_VERSION_MAJOR], [Bryc3C0in major version])
+AC_DEFINE([BRYC3C0IN_VERSION_MINOR], [_BRYC3C0IN_VERSION_MINOR], [Bryc3C0in minor version])
+AC_DEFINE([BRYC3C0IN_VERSION_REVISION], [_BRYC3C0IN_VERSION_REVISION], [Bryc3C0in build revision])
+AC_DEFINE([BRYC3C0IN_VERSION_BUILD], [_BRYC3C0IN_VERSION_BUILD], [Bryc3C0in version Build])
 AC_DEFINE([COPYRIGHT_YEAR], [_COPYRIGHT_YEAR], [Copyright year])
 AC_DEFINE([COPYRIGHT_HOLDERS], ["_COPYRIGHT_HOLDERS"], [Copyright holder(s) before %s replacement])
 AC_DEFINE([COPYRIGHT_HOLDERS_SUBSTITUTION], ["_COPYRIGHT_HOLDERS_SUBSTITUTION"], [Replacement for %s in copyright holders string])
@@ -1998,10 +1998,10 @@ AC_SUBST(CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MAJOR)
 AC_SUBST(CLIENT_VERSION_MINOR, _CLIENT_VERSION_MINOR)
 AC_SUBST(CLIENT_VERSION_BUILD, _CLIENT_VERSION_BUILD)
 AC_SUBST(CLIENT_VERSION_IS_RELEASE, _CLIENT_VERSION_IS_RELEASE)
-AC_SUBST(PEERCOIN_VERSION_MAJOR, _PEERCOIN_VERSION_MAJOR)
-AC_SUBST(PEERCOIN_VERSION_MINOR, _PEERCOIN_VERSION_MINOR)
-AC_SUBST(PEERCOIN_VERSION_REVISION, _PEERCOIN_VERSION_REVISION)
-AC_SUBST(PEERCOIN_VERSION_BUILD, _PEERCOIN_VERSION_BUILD)
+AC_SUBST(BRYC3C0IN_VERSION_MAJOR, _BRYC3C0IN_VERSION_MAJOR)
+AC_SUBST(BRYC3C0IN_VERSION_MINOR, _BRYC3C0IN_VERSION_MINOR)
+AC_SUBST(BRYC3C0IN_VERSION_REVISION, _BRYC3C0IN_VERSION_REVISION)
+AC_SUBST(BRYC3C0IN_VERSION_BUILD, _BRYC3C0IN_VERSION_BUILD)
 AC_SUBST(COPYRIGHT_YEAR, _COPYRIGHT_YEAR)
 AC_SUBST(COPYRIGHT_HOLDERS, "_COPYRIGHT_HOLDERS")
 AC_SUBST(COPYRIGHT_HOLDERS_SUBSTITUTION, "_COPYRIGHT_HOLDERS_SUBSTITUTION")

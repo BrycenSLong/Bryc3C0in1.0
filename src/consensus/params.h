@@ -143,7 +143,7 @@ struct Params {
         return std::numeric_limits<int>::max();
     }
 
-    /** peercoin stuff */
+    /** bryc3c0in stuff */
     uint256 bnInitialHashTarget;
     int64_t nStakeTargetSpacing;
     int64_t nTargetSpacingWorkMax;

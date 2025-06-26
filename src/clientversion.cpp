@@ -16,7 +16,7 @@
  * for both bitcoind and bitcoin-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("Satoshi");
+const std::string CLIENT_NAME("Bryc3C0in");
 
 #define CLIENT_VERSION_SUFFIX " Anisoptera"
 
@@ -35,8 +35,8 @@ const std::string CLIENT_NAME("Satoshi");
     #define BUILD_DESC BUILD_GIT_TAG
     #define BUILD_SUFFIX ""
 #else
-    #define BUILD_DESC "v" STRINGIZE(PEERCOIN_VERSION_MAJOR) "." STRINGIZE(PEERCOIN_VERSION_MINOR) \
-                       "." STRINGIZE(PEERCOIN_VERSION_REVISION) "." STRINGIZE(PEERCOIN_VERSION_BUILD)
+    #define BUILD_DESC "v" STRINGIZE(BRYC3C0IN_VERSION_MAJOR) "." STRINGIZE(BRYC3C0IN_VERSION_MINOR) \
+                       "." STRINGIZE(BRYC3C0IN_VERSION_REVISION) "." STRINGIZE(BRYC3C0IN_VERSION_BUILD)
     #if CLIENT_VERSION_IS_RELEASE
         #define BUILD_SUFFIX ""
     #elif defined(BUILD_GIT_COMMIT)
@@ -76,7 +76,7 @@ std::string FormatSubVersion(const std::string& name, int nClientVersion, const 
         ss << ")";
     }
     ss << "/";
-    ss << "Peercoin:" << FormatVersion(PEERCOIN_VERSION);
+    ss << "Bryc3C0in:" << FormatVersion(BRYC3C0IN_VERSION);
     ss << "(" << FormatFullVersion() << ")/";
     return ss.str();
 }
@@ -101,7 +101,7 @@ std::string CopyrightHolders(const std::string& strPrefix)
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/peercoin/peercoin>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/bryc3c0in/bryc3c0in>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i-%i").translated, 2011, COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +

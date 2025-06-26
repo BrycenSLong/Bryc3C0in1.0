@@ -56,7 +56,7 @@ jobs:
           allow: security.insecure
           cache-from: |
             type=registry,ref=ghcr.io/${{ github.repository }}/ci-tools/guix-base:${{ steps.detect.outputs.tag-hash }}
-            type=registry,ref=ghcr.io/peercoin/peercoin/ci-tools/guix-base:${{ steps.detect.outputs.tag-hash }}
+            type=registry,ref=ghcr.io/bryc3c0in/bryc3c0in/ci-tools/guix-base:${{ steps.detect.outputs.tag-hash }}
           cache-to: type=inline
 
   guix-host:
@@ -113,8 +113,8 @@ jobs:
           cache-from: |
             type=registry,ref=ghcr.io/${{ github.repository }}/ci-tools/guix-host:${{ needs.guix-base.outputs.tag-hash }}-${{ matrix.host }}
             type=registry,ref=ghcr.io/${{ github.repository }}/ci-tools/guix-base:${{ needs.guix-base.outputs.tag-hash }}
-            type=registry,ref=ghcr.io/peercoin/peercoin/ci-tools/guix-host:${{ needs.guix-base.outputs.tag-hash }}-${{ matrix.host }}
-            type=registry,ref=ghcr.io/peercoin/peercoin/ci-tools/guix-base:${{ needs.guix-base.outputs.tag-hash }}
+            type=registry,ref=ghcr.io/bryc3c0in/bryc3c0in/ci-tools/guix-host:${{ needs.guix-base.outputs.tag-hash }}-${{ matrix.host }}
+            type=registry,ref=ghcr.io/bryc3c0in/bryc3c0in/ci-tools/guix-base:${{ needs.guix-base.outputs.tag-hash }}
           cache-to: type=inline
 
   binary:
@@ -160,27 +160,27 @@ jobs:
           trap cleanup EXIT
 
           docker run --pull=always --rm -d --privileged --name=build-${{ matrix.host }} \
-            -v "${PWD}":/peercoin_aux \
+            -v "${PWD}":/bryc3c0in_aux \
             -v ~/.base_cache:/base_cache_aux \
             ${{ env.TARGET_CACHE }} \
           && echo cache-image-used=true >> $GITHUB_OUTPUT \
           || docker run --pull=always --rm -d --privileged --name=build-${{ matrix.host }} \
-            -v "${PWD}":/peercoin_aux \
+            -v "${PWD}":/bryc3c0in_aux \
             -v ~/.base_cache:/base_cache_aux \
             ${{ env.TARGET }}
 
           docker exec -i build-${{ matrix.host }} bash -c "
             source /root/.guix-profile/etc/profile
-            git config --global --add safe.directory /peercoin_aux/.git
-            git clone /peercoin_aux /peercoin
-            cd /peercoin
+            git config --global --add safe.directory /bryc3c0in_aux/.git
+            git clone /bryc3c0in_aux /bryc3c0in
+            cd /bryc3c0in
             git checkout --progress --force ${{ github.sha }}
             env
             env BASE_CACHE=/base_cache SOURCES_PATH=/sources SDK_PATH=/SDKs ./contrib/guix/guix-build
             rm -rf /base_cache_aux/* || true
             mv /base_cache/* /base_cache_aux/ || true
-            source \"/peercoin/contrib/guix/libexec/prelude.bash\"
-            mv \${OUTDIR_BASE:-\${VERSION_BASE}/output}/${{ matrix.host }}/* /peercoin_aux/ || true
+            source "/bryc3c0in/contrib/guix/libexec/prelude.bash"
+            mv ${OUTDIR_BASE:-${VERSION_BASE}/output}/${{ matrix.host }}/* /bryc3c0in_aux/ || true
           "
           docker stop build-${{ matrix.host }}
 
@@ -221,7 +221,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: peercoin-${{ steps.slug.outputs.sha8 }}-${{ matrix.host }}
+          name: bryc3c0in-${{ steps.slug.outputs.sha8 }}-${{ matrix.host }}
           path: |
             *.tar.gz
             *.zip
@@ -238,20 +238,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          repository: peercoin/packaging
+          repository: bryc3c0in/packaging
 
       - uses: actions/download-artifact@v4
         with:
-          pattern: peercoin-*linux*
+          pattern: bryc3c0in-*linux*
           path: docker
 
       - name: Place artifacts
         working-directory: docker
         run: |
           mkdir -p linux/amd64 linux/arm/v7 linux/arm64
-          mv peercoin-*-x86_64-linux-gnu/peercoin-*-x86_64-linux-gnu.tar.gz linux/amd64/
-          mv peercoin-*-arm-linux-gnueabihf/peercoin-*-arm-linux-gnueabihf.tar.gz linux/arm/v7/
-          mv peercoin-*-aarch64-linux-gnu/peercoin-*-aarch64-linux-gnu.tar.gz linux/arm64/
+          mv bryc3c0in-*-x86_64-linux-gnu/bryc3c0in-*-x86_64-linux-gnu.tar.gz linux/amd64/
+          mv bryc3c0in-*-arm-linux-gnueabihf/bryc3c0in-*-arm-linux-gnueabihf.tar.gz linux/arm/v7/
+          mv bryc3c0in-*-aarch64-linux-gnu/bryc3c0in-*-aarch64-linux-gnu.tar.gz linux/arm64/
 
       - uses: docker/setup-qemu-action@v3
         with:
@@ -316,8 +316,8 @@ jobs:
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: ${{ steps.detect.outputs.push == 'true' }}
           tags: |
-            peercoin/peercoind:${{ steps.detect.outputs.tag-name }}
-            ghcr.io/${{ github.repository }}/peercoind:${{ steps.detect.outputs.tag-name }}
+            bryc3c0in/peercoind:${{ steps.detect.outputs.tag-name }}
+            ghcr.io/${{ github.repository }}/bryc3c0ind:${{ steps.detect.outputs.tag-name }}
 
   release:
     runs-on: ubuntu-24.04
@@ -357,7 +357,7 @@ jobs:
       - uses: actions/download-artifact@v4
         if: steps.detect.outputs.tag-name != 'noop'
         with:
-          pattern: peercoin-*
+          pattern: bryc3c0in-*
 
       - name: Import GPG key
         if: steps.detect.outputs.tag-name != 'noop'
@@ -380,10 +380,10 @@ jobs:
         run: |
           rm -rf ${{ steps.detect.outputs.tag-name }}/*
           mkdir -p ${{ steps.detect.outputs.tag-name }}
-          mv peercoin-*-**/peercoin-*.tar.gz \
-            peercoin-*-**/peercoin-*.zip \
-            peercoin-*-**/peercoin-*.exe \
-            peercoin-*-**/peercoin-*.dmg \
+          mv bryc3c0in-*-**/bryc3c0in-*.tar.gz \
+            bryc3c0in-*-**/bryc3c0in-*.zip \
+            bryc3c0in-*-**/bryc3c0in-*.exe \
+            bryc3c0in-*-**/bryc3c0in-*.dmg \
           ${{ steps.detect.outputs.tag-name }}/
           cd ${{ steps.detect.outputs.tag-name }}
           sha256sum * > SHA256SUMS
@@ -391,7 +391,7 @@ jobs:
           rm SHA256SUMS
           cd -
           mktorrent -w ${{ github.server_url }}/${{ github.repository }}/releases/download \
-            -o ${{ steps.detect.outputs.tag-name }}/peercoin-${{ steps.detect.outputs.tag-name }}.torrent \
+            -o ${{ steps.detect.outputs.tag-name }}/bryc3c0in-${{ steps.detect.outputs.tag-name }}.torrent \
             -a udp://tracker.opentrackr.org:1337/announce \
             -a udp://tracker.openbittorrent.com:6969/announce \
             -a udp://exodus.desync.com:6969/announce \

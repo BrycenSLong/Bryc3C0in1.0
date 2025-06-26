@@ -1,5 +1,4 @@
-// Copyright (c) 2011-2021 The Bitcoin Core developers
-// Copyright (c) 2017-2025 The Peercoin developers
+// Copyright (c) 2017-2025 The Bryc3C0in developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -126,7 +125,7 @@ Intro::Intro(QWidget *parent, int64_t blockchain_size_gb) :
         .arg(PACKAGE_NAME)
         .arg(m_blockchain_size_gb)
         .arg(2012)
-        .arg(tr("Peercoin"))
+        .arg(tr("Bryc3C0in"))
     );
     ui->lblExplanation2->setText(ui->lblExplanation2->text().arg(PACKAGE_NAME));
 
