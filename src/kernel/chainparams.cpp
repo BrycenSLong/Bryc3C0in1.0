@@ -142,7 +142,7 @@ public:
         pchMessageStart[1] = 0x22;
         pchMessageStart[2] = 0xe0;
         pchMessageStart[3] = 0x1b;
-        nDefaultPort = 9901; 
+        nDefaultPort = 29333; // p2p port
         m_assumed_blockchain_size = 2;
 
         genesis = CreateGenesisBlock(1345083810, 1345084287, 2179302059u, 0x1d00ffff, 1, 0);
@@ -160,14 +160,12 @@ public:
         vSeeds.emplace_back("seed.bryc3c0in-library.org");
         vSeeds.emplace_back("seed.bryc3c0in.info");
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55);  // bryc3c0in: addresses begin with 'P'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,117); // bryc3c0in: addresses begin with 'p'
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,183);
-        base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
-        base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
-
-        // human readable prefix to bench32 address
-        bech32_hrp = "pc";
+        // Mainnet (Bryc3C0in)
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,11);  // 'B'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,13); // 'b'
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,21);
+        base58Prefixes[EXT_PUBLIC_KEY] = {0xec, 0xf0, 0x2d, 0xfc};
+        base58Prefixes[EXT_SECRET_KEY] = {0xc8, 0x73, 0x24, 0x4a};
 
         vFixedSeeds = std::vector<uint8_t>(std::begin(chainparams_seed_main), std::end(chainparams_seed_main));
 
@@ -246,11 +244,11 @@ public:
         consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000a39348f70f067a");  // 500000
         consensus.defaultAssumeValid = uint256S("0xa40f64181ee4a3bedda2eae0107d9da0e049fe285b6e6e2a7f1f11697f22c7ed"); // 500000
 
-        pchMessageStart[0] = 0xcb;
-        pchMessageStart[1] = 0xf2;
-        pchMessageStart[2] = 0xc0;
-        pchMessageStart[3] = 0xef;
-        nDefaultPort = 9903;
+        pchMessageStart[0] = 0xfb;
+        pchMessageStart[1] = 0x22;
+        pchMessageStart[2] = 0xe0;
+        pchMessageStart[3] = 0x1b;
+        nDefaultPort = 29335; //p2p port
         m_assumed_blockchain_size = 1;
 
         genesis = CreateGenesisBlock(1345083810, 1345090000, 122894938, 0x1d0fffff, 1, 0);
@@ -266,14 +264,12 @@ public:
         vSeeds.emplace_back("tseed.bryc3c0in-library.org");
         vSeeds.emplace_back("testseed.bryc3c0in.info");
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
-        base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
-
-        // human readable prefix to bench32 address
-        bech32_hrp = "tpc";
+        // Testnet (unique values)
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,35);  // 'C'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,36); // 'D'
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,37);
+        base58Prefixes[EXT_PUBLIC_KEY] = {0x12, 0x34, 0x56, 0x78};
+        base58Prefixes[EXT_SECRET_KEY] = {0x87, 0x65, 0x43, 0x21};
 
         vFixedSeeds = std::vector<uint8_t>(std::begin(chainparams_seed_test), std::end(chainparams_seed_test));
 
@@ -396,12 +392,11 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].min_activation_height = 0; // No activation delay
 */
         // message start is defined as the first 4 bytes of the sha256d of the block script
-        HashWriter h{};
-        h << consensus.signet_challenge;
-        uint256 hash = h.GetHash();
-        memcpy(pchMessageStart, hash.begin(), 4);
-
-        nDefaultPort = 38333;
+        pchMessageStart[0] = 0xfb;
+        pchMessageStart[1] = 0x22;
+        pchMessageStart[2] = 0xe0;
+        pchMessageStart[3] = 0x1b;
+        nDefaultPort = 29339; // p2p port
 
         genesis = CreateGenesisBlock(1345083810, 1345090000, 122894938, 0x1d0fffff, 1, 0);
         consensus.hashGenesisBlock = genesis.GetHash();
@@ -410,11 +405,12 @@ public:
 
         vFixedSeeds.clear();
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
-        base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
+        // Signet (unique values)
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,53);  // 'M'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,54); // 'N'
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,55);
+        base58Prefixes[EXT_PUBLIC_KEY] = {0xab, 0xcd, 0xef, 0x01};
+        base58Prefixes[EXT_SECRET_KEY] = {0x10, 0xfe, 0xdc, 0xba};
 
         bech32_hrp = "tb";
 
@@ -476,11 +472,11 @@ public:
         consensus.nMinimumChainWork = uint256{};
         consensus.defaultAssumeValid = uint256{};
 
-        pchMessageStart[0] = 0xcb;
-        pchMessageStart[1] = 0xf2;
-        pchMessageStart[2] = 0xc0;
-        pchMessageStart[3] = 0xef;
-        nDefaultPort = 9903;
+        pchMessageStart[0] = 0xfb;
+        pchMessageStart[1] = 0x22;
+        pchMessageStart[2] = 0xe0;
+        pchMessageStart[3] = 0x1b;
+        nDefaultPort = 29341; // p2p port
         m_assumed_blockchain_size = 0;
         m_assumed_chain_state_size = 0;
 
@@ -550,11 +546,12 @@ public:
             0
         };
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
-        base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
+        // Regtest (unique values)
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,73);  // 'f'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,74); // 'g'
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,75);
+        base58Prefixes[EXT_PUBLIC_KEY] = {0x22, 0x44, 0x66, 0x88};
+        base58Prefixes[EXT_SECRET_KEY] = {0x88, 0x66, 0x44, 0x22};
 
         bech32_hrp = "pcrt";
     }
